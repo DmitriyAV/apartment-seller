@@ -2,48 +2,78 @@
 <html>
 
 <head>
-    <title>Selouse</title>
+    <title>Sell house</title>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+          crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 
 <body>
 
-    <div id="search">
-        <input type="text" placeholder="Address" id="addr-input">
-        <input type="number" class="min price" placeholder="Min. Price" id="min-p-input">
-        <input type="number" class="max price" placeholder="Max Price" id="max-p-input">
-        <input type="number" class="min room" placeholder="Min. Rooms" id="min-r-input">
-        <input type="number" class="max room" placeholder="Max Rooms" id="max-r-input">
+<div id="search">
+    <input type="text" placeholder="Address" id="addr-input">
+    <input type="number" class="min price" placeholder="Min. Price" id="min-p-input">
+    <input type="number" class="max price" placeholder="Max Price" id="max-p-input">
+    <input type="number" class="min room" placeholder="Min. Rooms" id="min-r-input">
+    <input type="number" class="max room" placeholder="Max Rooms" id="max-r-input">
 
-        <div class="check-group">
-            <input class="form-radio" type="checkbox" name="immediate" id="immed-y">
-            <label for="immediate">Immediate</label>
-        </div>
-        <div class="check-group">
-            <input class="form-radio" type="checkbox" name="parking" id="park-y">
-            <label for="parking">Parking</label>
-        </div>
+    <div class="check-group">
+        <label for="immed-y">Immediate</label>
+        <input class="form-radio" type="checkbox" name="immediate" id="immed-y">
 
-        <button>Find Apartments</button>
+    </div>
+    <div class="check-group">
+        <label for="park-y">Parking</label>
+        <input class="form-radio" type="checkbox" name="parking" id="park-y">
     </div>
 
-    <hr>
+    <button>Find Apartments</button>
+</div>
 
-    <div id="results"></div>
+<hr>
 
-    <!-- Your Code Here -->
-    <!-- You should start doing handlebar stuff here -->
-    <!-- Your Code Here -->
+<div id="results"></div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
-    <script src="apt-data.js"></script>
-    <script src="apt-filter.js"></script>
-    <script src="main.js"></script>
+<!-- Your Code Here -->
+<!-- You should start doing handlebar stuff here -->
+
+<script id="templateForResult" type="text/x-handlebars-template">
+
+    <ul>
+        {{#each this}}
+            <li>
+                <div class="result">
+                    <img src="{{this.img}}">
+                    <div class="label l-addr address">{{this.address}}</div>
+                    <div class="label l-price price">{{this.price}}</div>
+                    <div class="label l-rooms rooms">{{this.rooms}}</div>
+                    {{#if this.parking}}
+                        <div class="label l-park parking">{{this.parking}}</div>
+                    {{/if}}
+                    {{#if this.immediate}}
+                        <div class="label l-immediate immediate">
+                            {{this.contactDetails.name}}
+                            {{this.contactDetails.email}}
+                        </div>
+                    {{/if}}
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+
+</script>
+<!-- Your Code Here -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.js"
+        integrity="sha512-c7SfJeKRl8g7wgL+zMGX78faYVGp+NZVQ587mRLrqeLySX/qHCQOKw/iZ5Pp64DaPjvedixWC/Fe73upnhBaRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="apt-data.js"></script>
+<script src="apt-filter.js"></script>
+<script src="main.js"></script>
 </body>
 
 </html>
